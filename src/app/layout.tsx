@@ -18,12 +18,27 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Horst&Co — Arquitetura", template: "%s — Horst&Co" },
-  description: "Escritório de arquitetura contemporânea. São Paulo.",
+  title: {
+    default: "Horst&Co — Arquitetura Contemporânea",
+    template: "%s — Horst&Co",
+  },
+  description:
+    "Escritório de arquitetura contemporânea. Projetamos experiências que unem permanência, estética e emoção. São Paulo.",
+  keywords: ["arquitetura", "arquitetura contemporânea", "escritório de arquitetura", "São Paulo"],
   metadataBase: new URL("https://horstandco.vercel.app"),
+  openGraph: {
+    title: "Horst&Co — Arquitetura Contemporânea",
+    description: "Escritório de arquitetura contemporânea. São Paulo.",
+    type: "website",
+    locale: "pt_BR",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable}`}>
       <body>{children}</body>
