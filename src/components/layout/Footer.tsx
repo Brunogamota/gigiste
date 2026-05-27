@@ -22,7 +22,7 @@ export function Footer() {
           className="col-span-2 md:col-span-1"
         >
           <span className="font-display text-3xl font-light tracking-[0.2em] text-[#F2EFE8] block mb-6">
-            FORMA
+            Horst&Co
           </span>
           <p className="font-body text-[13px] font-light text-[#6B6B6B] leading-relaxed max-w-[200px]">
             Arquitetura que transforma espaço em legado permanente.
@@ -52,7 +52,7 @@ export function Footer() {
           {
             title: "Contato",
             links: [
-              { label: "contato@forma.arq.br", href: "mailto:contato@forma.arq.br" },
+              { label: "contato@horstandco.arq.br", href: "mailto:contato@horstandco.arq.br" },
               { label: "+55 11 9999-0000", href: "tel:+5511999900000" },
               { label: "São Paulo, SP", href: "#" },
             ],
@@ -93,7 +93,7 @@ export function Footer() {
       {/* Bottom */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <p className="font-body text-[11px] tracking-[0.1em] text-[#3A3A3A]">
-          © {new Date().getFullYear()} FORMA Arquitetura. Todos os direitos reservados.
+          © {new Date().getFullYear()} Horst&Co Arquitetura. Todos os direitos reservados.
         </p>
         <p className="font-body text-[11px] tracking-[0.1em] text-[#3A3A3A]">
           CAU/SP — A0000000-0

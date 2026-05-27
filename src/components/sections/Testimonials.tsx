@@ -6,7 +6,7 @@ import { useReveal } from "@/hooks/useReveal";
 
 const testimonials = [
   {
-    text: "O FORMA não apenas construiu nossa casa — criou o espaço onde nossa família vai crescer e criar memórias por décadas. É impossível entrar nela sem sentir algo profundo.",
+    text: "O Horst&Co não apenas construiu nossa casa — criou o espaço onde nossa família vai crescer e criar memórias por décadas. É impossível entrar nela sem sentir algo profundo.",
     author: "Luisa & Marcos Figueiredo",
     project: "Casa Caetetuba — Ubatuba, SP",
     year: "2024",

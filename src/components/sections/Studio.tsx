@@ -33,7 +33,7 @@ export function Studio() {
       <div className="relative h-[60vh] overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1920&q=80"
-          alt="FORMA Studio"
+          alt="Horst&Co Studio"
           className="w-full h-full object-cover object-center"
           style={{ transform: "scale(1.05)" }}
         />
@@ -84,7 +84,7 @@ export function Studio() {
             className="flex flex-col justify-end"
           >
             <p className="font-body text-[15px] font-light text-[#9A9A9A] leading-relaxed mb-6">
-              Fundado em 2010 por Rafael Andrade e Marina Sotto, o FORMA é um
+              Fundado em 2010 por Rafael Andrade e Marina Sotto, o Horst&Co é um
               escritório de arquitetura contemporânea com sede em São Paulo.
             </p>
             <p className="font-body text-[13px] font-light text-[#6B6B6B] leading-relaxed">

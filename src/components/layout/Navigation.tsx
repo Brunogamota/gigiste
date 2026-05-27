@@ -48,7 +48,7 @@ export function Navigation() {
       >
         <Link href="/" className="group">
           <span className="font-display text-2xl font-light tracking-[0.25em] text-[#F2EFE8] transition-opacity duration-300 group-hover:opacity-60">
-            FORMA
+            Horst&Co
           </span>
         </Link>
 
@@ -163,10 +163,10 @@ export function Navigation() {
                     Contato
                   </p>
                   <a
-                    href="mailto:contato@forma.arq.br"
+                    href="mailto:contato@horstandco.arq.br"
                     className="font-body text-sm font-light text-[#6B6B6B] hover:text-[#C8C8C8] transition-colors duration-300"
                   >
-                    contato@forma.arq.br
+                    contato@horstandco.arq.br
                   </a>
                 </div>
               </motion.div>

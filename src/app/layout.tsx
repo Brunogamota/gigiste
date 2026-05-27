@@ -22,8 +22,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "FORMA — Arquitetura Contemporânea",
-    template: "%s — FORMA",
+    default: "Horst&Co — Arquitetura Contemporânea",
+    template: "%s — Horst&Co",
   },
   description:
     "Projetamos experiências arquitetônicas que unem permanência, estética e emoção. Escritório de arquitetura contemporânea de alto padrão.",
@@ -34,29 +34,29 @@ export const metadata: Metadata = {
     "arquitetura de alto padrão",
     "projetos residenciais",
     "arquitetura institucional",
-    "FORMA arquitetura",
+    "Horst&Co arquitetura",
   ],
-  authors: [{ name: "FORMA Arquitetura" }],
-  creator: "FORMA Arquitetura",
+  authors: [{ name: "Horst&Co Arquitetura" }],
+  creator: "Horst&Co Arquitetura",
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    title: "FORMA — Arquitetura Contemporânea",
+    title: "Horst&Co — Arquitetura Contemporânea",
     description:
       "Projetamos experiências arquitetônicas que unem permanência, estética e emoção.",
-    siteName: "FORMA Arquitetura",
+    siteName: "Horst&Co Arquitetura",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "FORMA — Arquitetura Contemporânea",
+        alt: "Horst&Co — Arquitetura Contemporânea",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FORMA — Arquitetura Contemporânea",
+    title: "Horst&Co — Arquitetura Contemporânea",
     description:
       "Projetamos experiências arquitetônicas que unem permanência, estética e emoção.",
     images: ["/og-image.jpg"],
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
-  metadataBase: new URL("https://forma-arquitetura.vercel.app"),
+  metadataBase: new URL("https://horstandco.vercel.app"),
 };
 
 export default function RootLayout({

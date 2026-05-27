@@ -27,7 +27,7 @@ export function Philosophy() {
         <motion.div className="absolute inset-0 scale-110" style={{ y: imageY }}>
           <img
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80"
-            alt="Arquitetura FORMA"
+            alt="Arquitetura Horst&Co"
             className="w-full h-full object-cover"
           />
         </motion.div>

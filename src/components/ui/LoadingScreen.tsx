@@ -52,7 +52,7 @@ export function LoadingScreen() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
           >
             <span className="font-display text-3xl font-light tracking-[0.2em] text-[#F2EFE8]">
-              FORMA
+              Horst&Co
             </span>
           </motion.div>
 

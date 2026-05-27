@@ -18,10 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.id === id);
   if (!project) return {};
   return {
-    title: `${project.title} — FORMA`,
+    title: `${project.title} — Horst&Co`,
     description: project.description,
     openGraph: {
-      title: `${project.title} — FORMA Arquitetura`,
+      title: `${project.title} — Horst&Co Arquitetura`,
       description: project.description,
       images: [{ url: project.images[0], width: 1200, height: 800 }],
     },

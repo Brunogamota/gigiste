@@ -27,7 +27,7 @@ export function Contact() {
       <div className="relative overflow-hidden h-[50vh] md:h-[60vh] flex items-center">
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
-          alt="FORMA"
+          alt="Horst&Co"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[rgba(10,10,10,0.75)]" />
@@ -88,7 +88,7 @@ export function Contact() {
             </p>
             <div className="space-y-10">
               {[
-                { label: "Email", value: "contato@forma.arq.br", href: "mailto:contato@forma.arq.br" },
+                { label: "Email", value: "contato@horstandco.arq.br", href: "mailto:contato@horstandco.arq.br" },
                 { label: "Telefone", value: "+55 11 9999-0000", href: "tel:+5511999900000" },
                 { label: "Endereço", value: "Rua Oscar Freire, 123\nSão Paulo, SP 01426-001", href: "#" },
                 { label: "Atendimento", value: "Segunda a sexta\n9h — 18h", href: "#" },
