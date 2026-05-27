@@ -1,44 +1,55 @@
 "use client";
 
-import Link from "next/link";
-
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      className="px-6 md:px-14 lg:px-20 py-12"
-      style={{ borderTop: "1px solid #DEDAD4", background: "#F7F5F2" }}
-    >
-      <div className="max-w-[1320px] mx-auto">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <Link
-            href="/"
-            className="font-display font-light tracking-[0.2em] text-[#0C0C0B] hover:opacity-50 transition-opacity duration-300"
-            style={{ fontSize: "1rem" }}
-          >
-            Horst&amp;Co
-          </Link>
+    <footer style={{ background: "var(--leather)", borderTop: "1px solid rgba(163,150,141,0.12)" }}>
+      {/* Giant display name */}
+      <div className="overflow-hidden px-4 md:px-8" style={{ paddingTop: "2vw" }}>
+        <p
+          className="font-display font-light leading-[0.82] tracking-[-0.05em] select-none"
+          style={{
+            fontSize: "clamp(5rem, 18vw, 22rem)",
+            color: "rgba(255,255,255,0.05)",
+            whiteSpace: "nowrap",
+          }}
+          aria-hidden
+        >
+          Horst &amp; Co
+        </p>
+      </div>
 
-          <p className="font-body text-[11px] text-[#C4BFB9] order-last md:order-none">
-            © {year} Horst&amp;Co Arquitetura — São Paulo, Brasil
-          </p>
+      {/* Footer bar */}
+      <div
+        className="flex flex-col md:flex-row items-start md:items-center justify-between px-8 md:px-14 lg:px-20 py-8 gap-6"
+        style={{ borderTop: "1px solid rgba(163,150,141,0.12)" }}
+      >
+        <p
+          className="font-body tracking-[0.15em]"
+          style={{ fontSize: "0.55rem", color: "var(--taupe)" }}
+        >
+          © {year} Horst&amp;Co Arquitetura — São Paulo, Brasil
+        </p>
 
-          <div className="flex flex-wrap gap-6 md:gap-8">
-            {[
-              { label: "Instagram", href: "#" },
-              { label: "LinkedIn", href: "#" },
-              { label: "CAU/SP", href: "#" },
-            ].map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                className="font-body text-[10px] tracking-[0.18em] text-[#8A867F] uppercase hover:text-[#0C0C0B] transition-colors duration-300"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
+        <p
+          className="font-display font-light tracking-[0.1em]"
+          style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.25)" }}
+        >
+          Beyond Architecture
+        </p>
+
+        <div className="flex gap-6">
+          {["Instagram", "Pinterest", "LinkedIn"].map((s) => (
+            <a
+              key={s}
+              href="#"
+              className="font-body tracking-[0.2em] uppercase transition-opacity duration-300 hover:opacity-60"
+              style={{ fontSize: "0.5rem", color: "var(--taupe)" }}
+            >
+              {s}
+            </a>
+          ))}
         </div>
       </div>
     </footer>

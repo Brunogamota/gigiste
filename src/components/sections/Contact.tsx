@@ -1,139 +1,150 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLDivElement>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    gsap.from(headlineRef.current, {
+      y: 50,
+      opacity: 0,
+      duration: 1.4,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    gsap.from(detailsRef.current?.children ?? [], {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.12,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: detailsRef.current,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  }, { scope: sectionRef });
 
   return (
     <section
+      ref={sectionRef}
       id="contato"
-      className="px-6 md:px-14 lg:px-20 py-28 md:py-40"
-      style={{ borderTop: "1px solid #DEDAD4" }}
+      className="py-36 md:py-52"
+      style={{ background: "var(--leather)" }}
     >
-      <div className="max-w-[1320px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-28">
-          {/* Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="font-body text-[10px] tracking-[0.25em] text-[#8A867F] uppercase mb-10">
-              Contato
-            </p>
-            <h2
-              className="font-display font-light text-[#0C0C0B] leading-[1.08] tracking-[-0.025em] mb-14"
-              style={{ fontSize: "clamp(2rem, 3.8vw, 3.6rem)" }}
-            >
-              Vamos conversar
-              <br />
-              <span className="italic text-[#8A867F]">sobre o seu projeto.</span>
-            </h2>
+      <div className="px-8 md:px-14 lg:px-20 max-w-[1400px] mx-auto">
+        {/* Section label */}
+        <p
+          className="font-body tracking-[0.35em] uppercase mb-16"
+          style={{ fontSize: "0.55rem", color: "var(--taupe)" }}
+        >
+          + Contato
+        </p>
 
-            <div className="flex flex-col gap-7">
+        {/* Main headline */}
+        <div ref={headlineRef} className="mb-24">
+          <h2
+            className="font-display font-light leading-[0.88] tracking-[-0.04em]"
+            style={{
+              fontSize: "clamp(3.5rem, 10vw, 12rem)",
+              color: "var(--white)",
+            }}
+          >
+            Vamos criar<br />
+            <em>algo</em><br />
+            extraordinário?
+          </h2>
+        </div>
+
+        {/* Contact details */}
+        <div ref={detailsRef} className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8">
+          {/* Email */}
+          <div>
+            <p
+              className="font-body tracking-[0.25em] uppercase mb-4"
+              style={{ fontSize: "0.5rem", color: "var(--taupe)" }}
+            >
+              Email
+            </p>
+            <a
+              href="mailto:contato@horstandco.com.br"
+              className="font-display font-light transition-opacity duration-300 hover:opacity-60"
+              style={{
+                fontSize: "clamp(0.9rem, 1.5vw, 1.2rem)",
+                color: "var(--white)",
+                borderBottom: "1px solid rgba(163,150,141,0.3)",
+                paddingBottom: "0.3rem",
+              }}
+            >
+              contato@horstandco.com.br
+            </a>
+          </div>
+
+          {/* Phone */}
+          <div>
+            <p
+              className="font-body tracking-[0.25em] uppercase mb-4"
+              style={{ fontSize: "0.5rem", color: "var(--taupe)" }}
+            >
+              Telefone
+            </p>
+            <a
+              href="tel:+551130001000"
+              className="font-display font-light transition-opacity duration-300 hover:opacity-60"
+              style={{
+                fontSize: "clamp(0.9rem, 1.5vw, 1.2rem)",
+                color: "var(--white)",
+                borderBottom: "1px solid rgba(163,150,141,0.3)",
+                paddingBottom: "0.3rem",
+              }}
+            >
+              +55 11 3000-1000
+            </a>
+          </div>
+
+          {/* Social */}
+          <div>
+            <p
+              className="font-body tracking-[0.25em] uppercase mb-4"
+              style={{ fontSize: "0.5rem", color: "var(--taupe)" }}
+            >
+              Redes Sociais
+            </p>
+            <div className="flex flex-col gap-3">
               {[
-                { label: "Email", value: "contato@horstandco.arq.br" },
-                { label: "Telefone", value: "+55 11 9999-0000" },
-                { label: "Localização", value: "São Paulo, SP — Brasil" },
-                { label: "Horário", value: "Seg–Sex, 9h–18h" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <p className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase mb-1">
-                    {item.label}
-                  </p>
-                  <p className="font-body text-sm font-light text-[#0C0C0B]">
-                    {item.value}
-                  </p>
-                </div>
+                { label: "Instagram", href: "#" },
+                { label: "Pinterest", href: "#" },
+                { label: "LinkedIn", href: "#" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="group flex items-center gap-2 font-body tracking-[0.15em] uppercase transition-opacity duration-300 hover:opacity-60"
+                  style={{ fontSize: "0.6rem", color: "var(--white)" }}
+                >
+                  {s.label}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
               ))}
             </div>
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {sent ? (
-              <div className="flex flex-col justify-center gap-5 py-16">
-                <h3
-                  className="font-display font-light text-[#0C0C0B]"
-                  style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
-                >
-                  Mensagem recebida.
-                </h3>
-                <p className="font-body text-sm font-light text-[#8A867F]">
-                  Retornamos em até 48 horas.
-                </p>
-              </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="flex flex-col gap-9"
-              >
-                {[
-                  { id: "name", label: "Nome", type: "text", key: "name" as const },
-                  { id: "email", label: "Email", type: "email", key: "email" as const },
-                ].map((field) => (
-                  <div key={field.id}>
-                    <label
-                      htmlFor={field.id}
-                      className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase block mb-3"
-                    >
-                      {field.label}
-                    </label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      value={form[field.key]}
-                      onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
-                      required
-                      className="w-full bg-transparent font-body text-sm font-light text-[#0C0C0B] outline-none pb-3 transition-colors duration-300"
-                      style={{ borderBottom: "1px solid #DEDAD4" }}
-                      onFocus={(e) => (e.target.style.borderBottomColor = "#0C0C0B")}
-                      onBlur={(e) => (e.target.style.borderBottomColor = "#DEDAD4")}
-                    />
-                  </div>
-                ))}
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase block mb-3"
-                  >
-                    Mensagem
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-transparent font-body text-sm font-light text-[#0C0C0B] outline-none pb-3 resize-none transition-colors duration-300"
-                    style={{ borderBottom: "1px solid #DEDAD4" }}
-                    onFocus={(e) => (e.target.style.borderBottomColor = "#0C0C0B")}
-                    onBlur={(e) => (e.target.style.borderBottomColor = "#DEDAD4")}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="self-start font-body text-[10px] tracking-[0.22em] uppercase text-[#0C0C0B] pb-1 transition-opacity duration-300 hover:opacity-40"
-                  style={{ borderBottom: "1px solid #0C0C0B" }}
-                >
-                  Enviar mensagem
-                </button>
-              </form>
-            )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
