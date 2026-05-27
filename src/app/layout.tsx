@@ -23,22 +23,19 @@ export const metadata: Metadata = {
     template: "%s — Horst&Co",
   },
   description:
-    "Escritório de arquitetura contemporânea. Projetamos experiências que unem permanência, estética e emoção. São Paulo.",
-  keywords: ["arquitetura", "arquitetura contemporânea", "escritório de arquitetura", "São Paulo"],
-  metadataBase: new URL("https://horstandco.vercel.app"),
+    "Horst&Co é um escritório de arquitetura contemporânea com sede em São Paulo. Projetamos experiências que unem permanência, estética e emoção.",
+  keywords: ["arquitetura", "arquitetura contemporânea", "São Paulo", "escritório de arquitetura"],
+  authors: [{ name: "Horst&Co Arquitetura" }],
   openGraph: {
     title: "Horst&Co — Arquitetura Contemporânea",
-    description: "Escritório de arquitetura contemporânea. São Paulo.",
+    description: "Projetamos experiências que unem permanência, estética e emoção.",
     type: "website",
     locale: "pt_BR",
   },
+  metadataBase: new URL("https://horstandco.vercel.app"),
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable}`}>
       <body>{children}</body>

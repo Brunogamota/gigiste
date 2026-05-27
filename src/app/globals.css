@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --bg: #F8F7F4;
-  --fg: #111111;
-  --muted: #888888;
-  --border: #E0DDD8;
+  --bg: #F7F5F2;
+  --fg: #0F0F0F;
+  --muted: #8A8A8A;
+  --border: #DEDAD4;
+  --hover-bg: #F0EDE8;
 }
 
 *, *::before, *::after {
@@ -21,34 +22,23 @@ html {
 }
 
 body {
-  background-color: #F8F7F4;
-  color: #111111;
-  font-family: var(--font-suisse), system-ui, -apple-system, sans-serif;
+  background-color: #F7F5F2;
+  color: #0F0F0F;
+  font-family: var(--font-suisse), -apple-system, system-ui, sans-serif;
   font-weight: 300;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
+img, video { display: block; max-width: 100%; }
 
-::selection {
-  background: rgba(17, 17, 17, 0.1);
-}
+a { color: inherit; text-decoration: none; }
 
-::-webkit-scrollbar {
-  width: 2px;
-  background: #F8F7F4;
-}
+::selection { background: rgba(15, 15, 15, 0.1); }
 
-::-webkit-scrollbar-thumb {
-  background: #E0DDD8;
-}
+::-webkit-scrollbar { width: 2px; background: #F7F5F2; }
+::-webkit-scrollbar-thumb { background: #DEDAD4; }
 
-:focus-visible {
-  outline: 1px solid #111111;
-  outline-offset: 3px;
-}
+:focus-visible { outline: 1px solid #0F0F0F; outline-offset: 3px; }
