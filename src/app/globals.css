@@ -4,10 +4,10 @@
 
 :root {
   --bg: #F7F5F2;
-  --fg: #0F0F0F;
-  --muted: #8A8A8A;
+  --fg: #0C0C0B;
+  --muted: #8A867F;
   --border: #DEDAD4;
-  --hover-bg: #F0EDE8;
+  --warm-dark: #1A1814;
 }
 
 *, *::before, *::after {
@@ -18,12 +18,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
-  background-color: #F7F5F2;
-  color: #0F0F0F;
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-suisse), -apple-system, system-ui, sans-serif;
   font-weight: 300;
   line-height: 1.6;
@@ -32,13 +32,38 @@ body {
   overflow-x: hidden;
 }
 
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.036;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 7s steps(8) infinite;
+}
+
+@keyframes grain {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-4%, -6%); }
+  25%  { transform: translate(6%, 3%); }
+  37%  { transform: translate(-2%, 8%); }
+  50%  { transform: translate(8%, -4%); }
+  62%  { transform: translate(-6%, 2%); }
+  75%  { transform: translate(3%, -7%); }
+  87%  { transform: translate(-8%, 5%); }
+  100% { transform: translate(0, 0); }
+}
+
 img, video { display: block; max-width: 100%; }
 
 a { color: inherit; text-decoration: none; }
 
-::selection { background: rgba(15, 15, 15, 0.1); }
+::selection { background: rgba(12, 12, 11, 0.1); }
 
-::-webkit-scrollbar { width: 2px; background: #F7F5F2; }
-::-webkit-scrollbar-thumb { background: #DEDAD4; }
+::-webkit-scrollbar { width: 2px; background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); }
 
-:focus-visible { outline: 1px solid #0F0F0F; outline-offset: 3px; }
+:focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
