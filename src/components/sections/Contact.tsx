@@ -10,131 +10,131 @@ export function Contact() {
   return (
     <section
       id="contato"
-      className="px-6 md:px-14 lg:px-20 py-28 md:py-40"
-      style={{ borderTop: "1px solid #DEDAD4" }}
+      className="px-6 md:px-16 lg:px-20 py-24 md:py-36"
+      style={{ borderTop: "1px solid var(--border)" }}
     >
-      <div className="max-w-[1320px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-28">
-          {/* Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="font-body text-[10px] tracking-[0.25em] text-[#8A867F] uppercase mb-10">
-              Contato
-            </p>
-            <h2
-              className="font-display font-light text-[#0C0C0B] leading-[1.08] tracking-[-0.025em] mb-14"
-              style={{ fontSize: "clamp(2rem, 3.8vw, 3.6rem)" }}
-            >
-              Vamos conversar
-              <br />
-              <span className="italic text-[#8A867F]">sobre o seu projeto.</span>
-            </h2>
+      <div className="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-[200px_1fr_1fr] gap-12 md:gap-16">
+        {/* Label */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="font-body text-[10px] tracking-[0.25em] uppercase text-[var(--muted)]">
+            Contato
+          </p>
+        </motion.div>
 
-            <div className="flex flex-col gap-7">
-              {[
-                { label: "Email", value: "contato@horstandco.arq.br" },
-                { label: "Telefone", value: "+55 11 9999-0000" },
-                { label: "Localização", value: "São Paulo, SP — Brasil" },
-                { label: "Horário", value: "Seg–Sex, 9h–18h" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <p className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase mb-1">
-                    {item.label}
-                  </p>
-                  <p className="font-body text-sm font-light text-[#0C0C0B]">
-                    {item.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        {/* Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h2
+            className="font-display font-light text-[var(--fg)] leading-[1.1] tracking-[-0.025em] mb-12"
+            style={{ fontSize: "clamp(1.6rem, 3vw, 2.8rem)" }}
           >
-            {sent ? (
-              <div className="flex flex-col justify-center gap-5 py-16">
-                <h3
-                  className="font-display font-light text-[#0C0C0B]"
-                  style={{ fontSize: "clamp(1.8rem, 3vw, 2.5rem)" }}
-                >
-                  Mensagem recebida.
-                </h3>
-                <p className="font-body text-sm font-light text-[#8A867F]">
-                  Retornamos em até 48 horas.
+            Vamos conversar<br />
+            <span className="italic text-[var(--muted)]">sobre o seu projeto.</span>
+          </h2>
+
+          <div className="flex flex-col gap-6">
+            {[
+              { l: "Email", v: "contato@horstandco.arq.br" },
+              { l: "Localização", v: "São Paulo, SP — Brasil" },
+              { l: "Horário", v: "Seg–Sex, 9h–18h" },
+            ].map((item) => (
+              <div key={item.l}>
+                <p className="font-body text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] mb-1">
+                  {item.l}
+                </p>
+                <p className="font-body text-[13px] font-light text-[var(--fg)]">
+                  {item.v}
                 </p>
               </div>
-            ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="flex flex-col gap-9"
-              >
-                {[
-                  { id: "name", label: "Nome", type: "text", key: "name" as const },
-                  { id: "email", label: "Email", type: "email", key: "email" as const },
-                ].map((field) => (
-                  <div key={field.id}>
-                    <label
-                      htmlFor={field.id}
-                      className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase block mb-3"
-                    >
-                      {field.label}
-                    </label>
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      value={form[field.key]}
-                      onChange={(e) => setForm({ ...form, [field.key]: e.target.value })}
-                      required
-                      className="w-full bg-transparent font-body text-sm font-light text-[#0C0C0B] outline-none pb-3 transition-colors duration-300"
-                      style={{ borderBottom: "1px solid #DEDAD4" }}
-                      onFocus={(e) => (e.target.style.borderBottomColor = "#0C0C0B")}
-                      onBlur={(e) => (e.target.style.borderBottomColor = "#DEDAD4")}
-                    />
-                  </div>
-                ))}
+            ))}
+          </div>
+        </motion.div>
 
-                <div>
+        {/* Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {sent ? (
+            <div className="flex flex-col gap-4 pt-2">
+              <h3
+                className="font-display font-light text-[var(--fg)]"
+                style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)" }}
+              >
+                Mensagem recebida.
+              </h3>
+              <p className="font-body text-[13px] font-light text-[var(--muted)]">
+                Retornamos em até 48h.
+              </p>
+            </div>
+          ) : (
+            <form
+              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              className="flex flex-col gap-8"
+            >
+              {[
+                { id: "name",    label: "Nome",     type: "text",  key: "name"    as const },
+                { id: "email",   label: "Email",    type: "email", key: "email"   as const },
+              ].map((f) => (
+                <div key={f.id}>
                   <label
-                    htmlFor="message"
-                    className="font-body text-[10px] tracking-[0.14em] text-[#8A867F] uppercase block mb-3"
+                    htmlFor={f.id}
+                    className="font-body text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] block mb-2.5"
                   >
-                    Mensagem
+                    {f.label}
                   </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-transparent font-body text-sm font-light text-[#0C0C0B] outline-none pb-3 resize-none transition-colors duration-300"
-                    style={{ borderBottom: "1px solid #DEDAD4" }}
-                    onFocus={(e) => (e.target.style.borderBottomColor = "#0C0C0B")}
-                    onBlur={(e) => (e.target.style.borderBottomColor = "#DEDAD4")}
+                  <input
+                    id={f.id}
+                    type={f.type}
+                    required
+                    value={form[f.key]}
+                    onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
+                    className="w-full bg-transparent font-body text-[13px] font-light text-[var(--fg)] outline-none pb-2.5 transition-colors duration-300"
+                    style={{ borderBottom: "1px solid var(--border)" }}
+                    onFocus={(e) => (e.target.style.borderBottomColor = "var(--fg)")}
+                    onBlur={(e) => (e.target.style.borderBottomColor = "var(--border)")}
                   />
                 </div>
-
-                <button
-                  type="submit"
-                  className="self-start font-body text-[10px] tracking-[0.22em] uppercase text-[#0C0C0B] pb-1 transition-opacity duration-300 hover:opacity-40"
-                  style={{ borderBottom: "1px solid #0C0C0B" }}
+              ))}
+              <div>
+                <label
+                  htmlFor="message"
+                  className="font-body text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] block mb-2.5"
                 >
-                  Enviar mensagem
-                </button>
-              </form>
-            )}
-          </motion.div>
-        </div>
+                  Mensagem
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full bg-transparent font-body text-[13px] font-light text-[var(--fg)] outline-none pb-2.5 resize-none transition-colors duration-300"
+                  style={{ borderBottom: "1px solid var(--border)" }}
+                  onFocus={(e) => (e.target.style.borderBottomColor = "var(--fg)")}
+                  onBlur={(e) => (e.target.style.borderBottomColor = "var(--border)")}
+                />
+              </div>
+              <button
+                type="submit"
+                className="self-start font-body text-[11px] tracking-[0.2em] uppercase text-[var(--fg)] pb-0.5 transition-opacity duration-300 hover:opacity-40"
+                style={{ borderBottom: "1px solid var(--fg)" }}
+              >
+                Enviar
+              </button>
+            </form>
+          )}
+        </motion.div>
       </div>
     </section>
   );
