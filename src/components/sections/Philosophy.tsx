@@ -23,7 +23,7 @@ export function Philosophy() {
       className="relative overflow-hidden bg-[#0A0A0A]"
     >
       {/* Full-width image with text overlay */}
-      <div className="relative h-[80vh] md:h-screen overflow-hidden">
+      <div className="relative overflow-hidden" style={{ height: "min(90vh, 800px)" }}>
         <motion.div className="absolute inset-0 scale-110" style={{ y: imageY }}>
           <img
             src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80"
@@ -85,7 +85,7 @@ export function Philosophy() {
       </div>
 
       {/* Principles section */}
-      <div className="px-8 md:px-14 py-28">
+      <div className="px-6 sm:px-8 md:px-14 py-16 sm:py-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -40 }}

@@ -135,7 +135,7 @@ export function Navigation() {
                       <span className="text-[10px] tracking-[0.2em] text-[#3A3A3A] font-body transition-colors duration-300 group-hover:text-[#6B6B6B]">
                         {link.index}
                       </span>
-                      <span className="font-display text-6xl sm:text-7xl md:text-8xl font-light text-[#F2EFE8] tracking-[-0.04em] leading-none transition-all duration-500 group-hover:text-[#9A9A9A] group-hover:translate-x-3">
+                      <span className="font-display text-5xl sm:text-6xl md:text-8xl font-light text-[#F2EFE8] tracking-[-0.04em] leading-none transition-all duration-500 group-hover:text-[#9A9A9A] group-hover:translate-x-3">
                         {link.label}
                       </span>
                     </a>

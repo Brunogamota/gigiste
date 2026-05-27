@@ -20,7 +20,7 @@ export function Projects() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projetos" className="relative bg-[#0A0A0A] px-8 md:px-14 py-32 md:py-48">
+    <section id="projetos" className="relative bg-[#0A0A0A] px-6 sm:px-8 md:px-14 py-20 sm:py-32 md:py-48">
       {/* Header */}
       <div
         ref={headerRef as React.RefObject<HTMLDivElement>}
@@ -44,7 +44,7 @@ export function Projects() {
               animate={headerVisible ? { y: 0 } : {}}
               transition={{ duration: 1.1, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
               className="font-display font-light text-[#F2EFE8] tracking-[-0.04em] leading-[0.95]"
-              style={{ fontSize: "clamp(3rem, 7vw, 7.5rem)" }}
+              style={{ fontSize: "clamp(2.8rem, 8vw, 7.5rem)" }}
             >
               Projetos
             </motion.h2>
@@ -121,9 +121,9 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, index, isHovered, onHover, isAnyHovered, variant }: ProjectCardProps) {
   const heightMap = {
-    large: "h-[70vh]",
-    medium: "h-[50vh]",
-    small: "h-[40vh]",
+    large: "h-[60vw] sm:h-[70vh]",
+    medium: "h-[55vw] sm:h-[50vh]",
+    small: "h-[55vw] sm:h-[40vh]",
   };
 
   return (
@@ -136,7 +136,7 @@ function ProjectCard({ project, index, isHovered, onHover, isAnyHovered, variant
       }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.19, 1, 0.22, 1] }}
-      className={`relative group overflow-hidden cursor-none ${
+      className={`relative group overflow-hidden ${
         variant === "large" ? "md:col-span-2" : ""
       }`}
       onMouseEnter={() => onHover(project.id)}

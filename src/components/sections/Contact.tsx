@@ -31,7 +31,7 @@ export function Contact() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[rgba(10,10,10,0.75)]" />
-        <div className="relative z-10 px-8 md:px-14 w-full">
+        <div className="relative z-10 px-6 sm:px-8 md:px-14 w-full">
           <div className="max-w-[1000px]">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -44,7 +44,7 @@ export function Contact() {
               </p>
               <h2
                 className="font-display font-light text-[#F2EFE8] tracking-[-0.04em] leading-[0.92] mb-10"
-                style={{ fontSize: "clamp(3rem, 8vw, 9rem)" }}
+                style={{ fontSize: "clamp(2.2rem, 9vw, 9rem)" }}
               >
                 Seu projeto
                 <br />
@@ -74,7 +74,7 @@ export function Contact() {
       <div
         id="form"
         ref={ref as React.RefObject<HTMLDivElement>}
-        className="px-8 md:px-14 py-24 md:py-36"
+        className="px-6 sm:px-8 md:px-14 py-16 sm:py-24 md:py-36"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-[1400px] mx-auto">
           {/* Left info */}

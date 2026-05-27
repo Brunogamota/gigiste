@@ -49,7 +49,7 @@ export function Studio() {
       {/* Content */}
       <div
         ref={ref as React.RefObject<HTMLDivElement>}
-        className="px-8 md:px-14 pb-32 md:pb-48"
+        className="px-6 sm:px-8 md:px-14 pb-20 sm:pb-32 md:pb-48"
       >
         {/* About text */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-28 -mt-24 relative z-10">
@@ -71,7 +71,7 @@ export function Studio() {
                 animate={isVisible ? { y: 0 } : {}}
                 transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1] }}
                 className="font-display font-light text-[#F2EFE8] tracking-[-0.04em] leading-[0.95]"
-                style={{ fontSize: "clamp(3rem, 7vw, 7.5rem)" }}
+                style={{ fontSize: "clamp(2.5rem, 8vw, 7.5rem)" }}
               >
                 Sobre nós
               </motion.h2>

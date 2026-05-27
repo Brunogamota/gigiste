@@ -42,7 +42,7 @@ export function Manifesto() {
   return (
     <section
       ref={containerRef}
-      className="relative px-8 md:px-14 py-32 md:py-48 overflow-hidden"
+      className="relative px-6 sm:px-8 md:px-14 py-20 sm:py-32 md:py-48 overflow-hidden"
     >
       {/* Background texture */}
       <div className="absolute inset-0 bg-[#0A0A0A]" />
@@ -82,7 +82,7 @@ export function Manifesto() {
                   ease: [0.19, 1, 0.22, 1],
                 }}
                 className="font-display font-light text-[#F2EFE8] leading-[1.05] tracking-[-0.03em]"
-                style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
+                style={{ fontSize: "clamp(1.8rem, 6vw, 5.5rem)" }}
               >
                 {sentence}
               </motion.p>
@@ -98,7 +98,7 @@ export function Manifesto() {
                 ease: [0.19, 1, 0.22, 1],
               }}
               className="font-display font-light italic text-[#6B6B6B] leading-[1.05] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 6vw, 5.5rem)" }}
             >
               Projetamos a interseção.
             </motion.p>

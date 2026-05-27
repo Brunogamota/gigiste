@@ -64,7 +64,7 @@ export function Process() {
       {/* Top divider */}
       <div className="h-[1px] bg-[rgba(42,42,42,0.6)]" />
 
-      <div className="px-8 md:px-14 py-32 md:py-48">
+      <div className="px-6 sm:px-8 md:px-14 py-24 sm:py-32 md:py-48">
         {/* Header */}
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
@@ -88,7 +88,7 @@ export function Process() {
                 animate={isVisible ? { y: 0 } : {}}
                 transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1] }}
                 className="font-display font-light text-[#F2EFE8] tracking-[-0.04em] leading-[0.95]"
-                style={{ fontSize: "clamp(3rem, 7vw, 7.5rem)" }}
+                style={{ fontSize: "clamp(2.8rem, 8vw, 7.5rem)" }}
               >
                 Processo
               </motion.h2>

@@ -32,7 +32,7 @@ export function Testimonials() {
   return (
     <section
       ref={ref as React.RefObject<HTMLDivElement>}
-      className="relative bg-[#111111] px-8 md:px-14 py-32 md:py-48 overflow-hidden"
+      className="relative bg-[#111111] px-6 sm:px-8 md:px-14 py-20 sm:py-32 md:py-48 overflow-hidden"
     >
       {/* Background large quote mark */}
       <div
@@ -66,7 +66,7 @@ export function Testimonials() {
             transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
           >
             <blockquote className="font-display font-light text-[#C8C8C8] leading-[1.25] tracking-[-0.02em] mb-12"
-              style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}
+              style={{ fontSize: "clamp(1.3rem, 4.5vw, 2.5rem)" }}
             >
               "{testimonials[current].text}"
             </blockquote>
