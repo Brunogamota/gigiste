@@ -37,10 +37,12 @@ export default async function ProjectPage({ params }: Props) {
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <main className="bg-[#0A0A0A]">
+    <>
       <Navigation />
-      <ProjectDetail project={project} nextProject={nextProject} />
+      <main>
+        <ProjectDetail project={project} nextProject={nextProject} />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
