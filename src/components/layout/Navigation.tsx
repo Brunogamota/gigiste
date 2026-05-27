@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { label: "Projetos", href: "#projetos" },
+  { label: "Escritório", href: "#escritorio" },
   { label: "Sobre", href: "#sobre" },
-  { label: "Processo", href: "#processo" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -27,103 +26,171 @@ export function Navigation() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const isLight = scrolled || open;
-  const textColor = isLight ? "#0C0C0B" : "#F7F5F2";
-  const mutedColor = isLight ? "#8A867F" : "rgba(247,245,242,0.6)";
+  const handleNavClick = (href: string) => {
+    setOpen(false);
+    setTimeout(() => {
+      const id = href.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 400);
+  };
 
   return (
     <>
+      {/* 8px black top bar */}
+      <div
+        className="fixed top-0 left-0 right-0 z-[60]"
+        style={{ height: 8, background: "#000000" }}
+        aria-hidden
+      />
+
+      {/* Main header */}
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
+        className="fixed left-0 right-0 z-50 transition-all duration-700"
         style={{
-          background: scrolled ? "#F7F5F2" : "transparent",
-          borderBottom: scrolled ? "1px solid #DEDAD4" : "1px solid transparent",
+          top: 8,
+          background: scrolled && !open ? "rgba(250,248,245,0.96)" : "transparent",
+          backdropFilter: scrolled && !open ? "blur(8px)" : "none",
+          borderBottom: scrolled && !open ? "1px solid var(--khaki)" : "1px solid transparent",
         }}
       >
-        <div
-          className="flex items-center justify-between px-6 md:px-14 lg:px-20"
-          style={{ height: 68 }}
-        >
+        <div className="flex items-center justify-between px-8 md:px-12 lg:px-16" style={{ height: 64 }}>
+          {/* Logo */}
           <Link
             href="/"
-            className="font-display font-light tracking-[0.2em] transition-all duration-500 hover:opacity-50"
-            style={{ fontSize: "1.05rem", color: textColor }}
+            className="flex flex-col leading-none transition-opacity duration-400 hover:opacity-50"
+            onClick={() => setOpen(false)}
           >
-            Horst&amp;Co
+            <span
+              className="font-display font-light tracking-[0.12em]"
+              style={{
+                fontSize: "1.25rem",
+                color: open ? "var(--white)" : scrolled ? "var(--leather)" : "var(--white)",
+                transition: "color 0.5s ease",
+              }}
+            >
+              H&amp;C
+            </span>
+            <span
+              className="font-body tracking-[0.22em] uppercase"
+              style={{
+                fontSize: "0.45rem",
+                color: open ? "rgba(255,255,255,0.5)" : scrolled ? "var(--taupe)" : "rgba(255,255,255,0.5)",
+                transition: "color 0.5s ease",
+                letterSpacing: "0.25em",
+              }}
+            >
+              Beyond Architecture
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-10">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="font-body text-[10px] tracking-[0.22em] uppercase transition-all duration-300 hover:opacity-100"
-                style={{ color: mutedColor, opacity: 0.8 }}
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile burger */}
+          {/* Hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden relative w-6 h-4 flex flex-col justify-between"
-            aria-label={open ? "Fechar" : "Menu"}
+            className="flex flex-col justify-center items-end gap-[5px] w-8 h-8"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
           >
-            <motion.span
-              className="block w-full h-px origin-center"
-              style={{ background: textColor }}
-              animate={open ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            <span
+              className="block h-px transition-all duration-400 origin-right"
+              style={{
+                width: open ? "100%" : "100%",
+                background: open ? "var(--white)" : scrolled ? "var(--leather)" : "var(--white)",
+                transform: open ? "rotate(-45deg) translateY(3px)" : "none",
+              }}
             />
-            <motion.span
-              className="block h-px"
-              style={{ width: "65%", background: mutedColor }}
-              animate={open ? { opacity: 0, x: -8 } : { opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
+            <span
+              className="block h-px transition-all duration-300"
+              style={{
+                width: open ? "0%" : "65%",
+                background: open ? "var(--white)" : scrolled ? "var(--taupe)" : "rgba(255,255,255,0.55)",
+                opacity: open ? 0 : 1,
+              }}
             />
-            <motion.span
-              className="block w-full h-px origin-center"
-              style={{ background: textColor }}
-              animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            <span
+              className="block h-px transition-all duration-400 origin-right"
+              style={{
+                width: open ? "100%" : "100%",
+                background: open ? "var(--white)" : scrolled ? "var(--leather)" : "var(--white)",
+                transform: open ? "rotate(45deg) translateY(-3px)" : "none",
+              }}
             />
           </button>
         </div>
       </header>
 
-      {/* Mobile overlay menu */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed z-40 left-0 right-0 bg-[#F7F5F2]"
-            style={{ top: 68, borderBottom: "1px solid #DEDAD4" }}
-          >
-            <nav className="flex flex-col px-6 py-10 gap-7">
-              {links.map((l, i) => (
-                <motion.a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25, delay: i * 0.05 }}
-                  className="font-body text-[11px] tracking-[0.25em] uppercase py-1 transition-colors duration-200"
-                  style={{ color: "#8A867F" }}
+      {/* Fullscreen overlay */}
+      <div
+        className="fixed inset-0 z-40 flex flex-col justify-between px-8 md:px-16 py-32 transition-all duration-700"
+        style={{
+          background: "var(--cacao)",
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+          top: 8,
+        }}
+      >
+        <nav className="flex flex-col gap-1 mt-8">
+          {links.map((l, i) => (
+            <div
+              key={l.href}
+              className="overflow-hidden"
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+            >
+              <button
+                onClick={() => handleNavClick(l.href)}
+                className="group flex items-center justify-between w-full py-6 transition-all duration-300"
+                style={{
+                  transform: open ? "translateY(0)" : "translateY(40px)",
+                  opacity: open ? 1 : 0,
+                  transition: `transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${i * 0.08}s, opacity 0.6s ease ${i * 0.08}s`,
+                }}
+              >
+                <span
+                  className="font-display font-light italic leading-none"
+                  style={{
+                    fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                    color: "var(--pearl)",
+                  }}
                 >
                   {l.label}
-                </motion.a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                </span>
+                <span
+                  className="font-body text-xs tracking-[0.3em] uppercase transition-transform duration-300 group-hover:translate-x-2"
+                  style={{ color: "var(--taupe)" }}
+                >
+                  →
+                </span>
+              </button>
+            </div>
+          ))}
+        </nav>
+
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="font-body text-[10px] tracking-[0.25em] uppercase mb-2" style={{ color: "var(--taupe)" }}>
+              Contato
+            </p>
+            <a
+              href="mailto:contato@horstandco.com.br"
+              className="font-display font-light text-sm transition-opacity duration-200 hover:opacity-60"
+              style={{ color: "var(--pearl)" }}
+            >
+              contato@horstandco.com.br
+            </a>
+          </div>
+          <div className="flex gap-6">
+            {["Instagram", "Pinterest", "LinkedIn"].map((s) => (
+              <a
+                key={s}
+                href="#"
+                className="font-body text-[10px] tracking-[0.2em] uppercase transition-opacity duration-200 hover:opacity-60"
+                style={{ color: "var(--taupe)" }}
+              >
+                {s}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 }

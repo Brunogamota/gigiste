@@ -1,134 +1,195 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
-  const lineRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const imgRef = useRef<HTMLDivElement>(null);
+  const monogramRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // Image zoom on scroll
+    gsap.to(imgRef.current, {
+      scale: 1.06,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
+
+    // Monogram parallax
+    gsap.to(monogramRef.current, {
+      y: -120,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5,
+      },
+    });
+
+    // Content fade out on scroll
+    gsap.to(contentRef.current, {
+      opacity: 0,
+      y: -40,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: "40% top",
+        scrub: 1,
+      },
+    });
+
+    // Entry animations
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.from(monogramRef.current, {
+      opacity: 0,
+      scale: 1.04,
+      duration: 2,
+      ease: "power2.out",
+    });
+  }, { scope: sectionRef });
 
   return (
     <section
+      ref={sectionRef}
+      id="hero"
       className="relative overflow-hidden"
       style={{ height: "100svh", minHeight: 600 }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
+      {/* Background image with zoom */}
+      <div ref={imgRef} className="absolute inset-0 will-change-transform">
         <img
-          src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=2000&q=80"
-          alt=""
+          src="https://picsum.photos/seed/horstarch/2000/1200"
+          alt="Horst&Co Architecture"
           className="w-full h-full object-cover"
           fetchPriority="high"
         />
-        {/* Multi-layer overlay for depth */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(15,12,10,0.55) 0%, rgba(15,12,10,0.3) 40%, rgba(15,12,10,0.65) 100%)",
+              "linear-gradient(160deg, rgba(38,38,38,0.5) 0%, rgba(38,38,38,0.2) 50%, rgba(38,38,38,0.7) 100%)",
           }}
         />
       </div>
 
+      {/* Giant H&C monogram */}
+      <div
+        ref={monogramRef}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none will-change-transform"
+      >
+        <span
+          className="font-display font-light leading-none tracking-[-0.04em]"
+          style={{
+            fontSize: "clamp(8rem, 28vw, 32rem)",
+            color: "rgba(255,255,255,0.08)",
+            letterSpacing: "-0.06em",
+          }}
+          aria-hidden
+        >
+          H&amp;C
+        </span>
+      </div>
+
       {/* Content */}
-      <div className="relative h-full flex flex-col justify-between px-6 md:px-14 lg:px-20 py-28 md:py-32">
+      <div
+        ref={contentRef}
+        className="relative h-full flex flex-col justify-between px-8 md:px-14 lg:px-20"
+        style={{ paddingTop: 88, paddingBottom: 48 }}
+      >
         {/* Top label */}
-        <motion.p
-          className="font-body text-[10px] tracking-[0.28em] uppercase"
-          style={{ color: "rgba(247,245,242,0.5)" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
+        <p
+          className="font-body tracking-[0.28em] uppercase"
+          style={{ fontSize: "0.6rem", color: "rgba(250,248,245,0.45)" }}
         >
           Arquitetura Contemporânea — São Paulo
-        </motion.p>
+        </p>
 
-        {/* Main headline */}
-        <div className="max-w-4xl">
-          <div className="overflow-hidden mb-3">
-            <motion.h1
-              className="font-display font-light leading-[1.0] tracking-[-0.03em]"
-              style={{
-                color: "#F7F5F2",
-                fontSize: "clamp(2.8rem, 7vw, 7.5rem)",
-              }}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Espaços desenhados
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-3">
-            <motion.h1
-              className="font-display font-light leading-[1.0] tracking-[-0.03em] italic"
-              style={{
-                color: "rgba(247,245,242,0.6)",
-                fontSize: "clamp(2.8rem, 7vw, 7.5rem)",
-              }}
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              para permanecer.
-            </motion.h1>
-          </div>
-
-          <motion.div
-            className="mt-10 flex items-center gap-5"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.9 }}
+        {/* Center / main headline */}
+        <div>
+          <p
+            className="font-body tracking-[0.22em] uppercase mb-6"
+            style={{ fontSize: "0.55rem", color: "rgba(250,248,245,0.4)" }}
           >
-            <div className="w-8 h-px" style={{ background: "rgba(247,245,242,0.35)" }} />
-            <p
-              className="font-body text-[11px] font-light leading-relaxed tracking-[0.04em]"
-              style={{ color: "rgba(247,245,242,0.5)", maxWidth: 300 }}
-            >
-              Horst&amp;Co — projetando experiências arquitetônicas desde 2010.
-            </p>
-          </motion.div>
+            Est. 2010
+          </p>
+          <h1
+            className="font-display font-light leading-[0.95] tracking-[-0.03em]"
+            style={{
+              fontSize: "clamp(3rem, 8vw, 9rem)",
+              color: "var(--white)",
+              maxWidth: "14ch",
+            }}
+          >
+            Arquitetura<br />
+            <em>além do</em><br />
+            imaginário.
+          </h1>
         </div>
 
         {/* Bottom row */}
-        <motion.div
-          className="flex items-end justify-between"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.1 }}
-        >
-          <a
-            href="#projetos"
-            className="group flex items-center gap-3 font-body text-[10px] tracking-[0.22em] uppercase transition-opacity duration-300 hover:opacity-60"
-            style={{ color: "rgba(247,245,242,0.7)" }}
-          >
-            Ver projetos
-            <svg width="28" height="1" viewBox="0 0 28 1" fill="none" aria-hidden>
-              <line x1="0" y1="0.5" x2="28" y2="0.5" stroke="currentColor" strokeOpacity="0.6" />
-            </svg>
-          </a>
+        <div className="flex items-end justify-between">
+          <div>
+            <p
+              className="font-display font-light tracking-[0.06em]"
+              style={{ fontSize: "clamp(0.85rem, 1.4vw, 1.1rem)", color: "rgba(250,248,245,0.7)" }}
+            >
+              Horst &amp; Co
+            </p>
+            <p
+              className="font-body tracking-[0.2em] uppercase"
+              style={{ fontSize: "0.5rem", color: "rgba(250,248,245,0.35)", marginTop: 2 }}
+            >
+              Beyond Architecture
+            </p>
+          </div>
 
           {/* Scroll indicator */}
           <div className="flex flex-col items-center gap-2">
             <div
               className="w-px overflow-hidden"
-              style={{ height: 40, background: "rgba(247,245,242,0.15)" }}
+              style={{ height: 48, background: "rgba(250,248,245,0.12)" }}
             >
-              <motion.div
-                className="w-full h-full"
-                style={{ background: "rgba(247,245,242,0.5)" }}
-                animate={{ y: ["-100%", "100%"] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              <div
+                className="w-full"
+                style={{
+                  height: "100%",
+                  background: "rgba(250,248,245,0.45)",
+                  animation: "scrollBar 1.8s ease-in-out infinite",
+                }}
               />
             </div>
             <span
-              className="font-body text-[9px] tracking-[0.2em] uppercase"
-              style={{ color: "rgba(247,245,242,0.35)", writingMode: "vertical-rl" }}
+              className="font-body tracking-[0.25em] uppercase"
+              style={{ fontSize: "0.45rem", color: "rgba(250,248,245,0.3)", writingMode: "vertical-rl" }}
             >
               Scroll
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes scrollBar {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(200%); }
+        }
+      `}</style>
     </section>
   );
 }

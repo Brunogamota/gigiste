@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Tenor_Sans } from "next/font/google";
 import { SmoothScroll } from "@/providers/SmoothScroll";
+import { CustomCursor } from "@/components/layout/CustomCursor";
+import { BackToHome } from "@/components/layout/BackToHome";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
-  variable: "--font-canela",
+  variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const tenor = Tenor_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-suisse",
+  weight: ["400"],
+  variable: "--font-body",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Horst&Co — Arquitetura Contemporânea",
+    default: "Horst&Co — Beyond Architecture",
     template: "%s — Horst&Co",
   },
   description:
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   keywords: ["arquitetura", "arquitetura contemporânea", "São Paulo", "escritório de arquitetura"],
   authors: [{ name: "Horst&Co Arquitetura" }],
   openGraph: {
-    title: "Horst&Co — Arquitetura Contemporânea",
+    title: "Horst&Co — Beyond Architecture",
     description: "Projetamos experiências que unem permanência, estética e emoção.",
     type: "website",
     locale: "pt_BR",
@@ -38,9 +40,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="pt-BR" className={`${cormorant.variable} ${tenor.variable}`}>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <CustomCursor />
+          <BackToHome />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
